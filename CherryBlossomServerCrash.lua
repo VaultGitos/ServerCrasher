@@ -1,8 +1,8 @@
 local Players = game.Players
 
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-103, -60, -5)
-
 game:GetService("RunService").RenderStepped:Connect(function()
+    Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-103, -60, -5)
     for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("ClickDetector") then
             fireclickdetector(v)
@@ -20,5 +20,4 @@ game:GetService("RunService").RenderStepped:Connect(function()
             v.Parent = workspace
         end
     end
-    Players.LocalPlayer.Character.Humanoid:ChangeState(11)
 end)

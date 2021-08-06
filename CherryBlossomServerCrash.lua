@@ -1,6 +1,6 @@
 local Players = game.Players
 
-game:GetService("RunService").RenderStepped:Connect(function()
+game:GetService("RunService").Heartbeat:Connect(function()
     Players.LocalPlayer.Character.Humanoid:ChangeState(11)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-103, -60, -5)
     for i,v in pairs(game.Workspace:GetDescendants()) do

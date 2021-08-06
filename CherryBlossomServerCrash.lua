@@ -1,11 +1,15 @@
 local Players = game.Players
 
+game:GetService("StarterGui"):SetCoreGuiEnabled('Backpack', false)
+
 game:GetService("RunService").Heartbeat:Connect(function()
     Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-103, -60, -5)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4139, 10898, 1453)
     for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("ClickDetector") then
-            fireclickdetector(v)
+            if v.Parent.Name ~= "Shirt Purchase" then
+                fireclickdetector(v)
+            end
         end
     end
     wait(1)

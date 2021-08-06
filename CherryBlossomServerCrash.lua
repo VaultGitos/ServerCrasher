@@ -1,5 +1,7 @@
 local Players = game.Players
 
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-103, -60, -5)
+
 game:GetService("RunService").RenderStepped:Connect(function()
     for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("ClickDetector") then
@@ -18,4 +20,5 @@ game:GetService("RunService").RenderStepped:Connect(function()
             v.Parent = workspace
         end
     end
+    Players.LocalPlayer.Character.Humanoid:ChangeState(11)
 end)

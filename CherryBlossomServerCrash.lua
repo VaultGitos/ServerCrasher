@@ -1,3 +1,24 @@
+local mt = getrawmetatable(game)
+local nc = mt.__namecall
+
+setreadonly(mt, false)
+
+mt.__namecall = function(self, ...)
+    local args = {...}
+    local method = getnamecallmethod()
+    
+    if method == "Kick" then
+        return wait(9e9)
+    end
+    
+    return nc(self, ...)
+end
+
+game.Workspace.ChildAdded:Connect(function(child)
+    wait()
+    child:Destroy()
+end)
+
 local Players = game.Players
 
 game:GetService("StarterGui"):SetCoreGuiEnabled('Backpack', false)
@@ -12,16 +33,20 @@ game:GetService("RunService").Heartbeat:Connect(function()
             end
         end
     end
-    wait(1)
-    for i,v in pairs(Players.LocalPlayer.Backpack:GetChildren()) do
-        if v:IsA("Tool") then
-            v.Parent = Players.LocalPlayer.Character
+end)
+
+spawn(function()
+    while wait() do
+        for i,v in pairs(Players.LocalPlayer.Backpack:GetChildren()) do
+            if v:IsA("Tool") then
+                v.Parent = Players.LocalPlayer.Character
+            end
         end
-    end
-    wait()
-    for i,v in pairs(Players.LocalPlayer.Character:GetChildren()) do
-        if v:IsA("Tool") then
-            v.Parent = workspace
+        wait()
+        for i,v in pairs(Players.LocalPlayer.Character:GetChildren()) do
+            if v:IsA("Tool") then
+                v.Parent = workspace
+            end
         end
     end
 end)

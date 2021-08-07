@@ -14,11 +14,6 @@ mt.__namecall = function(self, ...)
     return nc(self, ...)
 end
 
-game.Workspace.ChildAdded:Connect(function(child)
-    wait()
-    child:Destroy()
-end)
-
 local Players = game.Players
 
 game:GetService("StarterGui"):SetCoreGuiEnabled('Backpack', false)
@@ -33,20 +28,22 @@ game:GetService("RunService").Heartbeat:Connect(function()
             end
         end
     end
-end)
-
-spawn(function()
-    while wait() do
-        for i,v in pairs(Players.LocalPlayer.Backpack:GetChildren()) do
-            if v:IsA("Tool") then
+    for i,v in pairs(Players.LocalPlayer.Backpack:GetChildren()) do
+        if v:IsA("Tool") then
+            if v.CanBeDropped == true then
                 v.Parent = Players.LocalPlayer.Character
             end
         end
-        wait()
-        for i,v in pairs(Players.LocalPlayer.Character:GetChildren()) do
-            if v:IsA("Tool") then
-                v.Parent = workspace
-            end
+    end
+    wait()
+    for i,v in pairs(Players.LocalPlayer.Character:GetChildren()) do
+        if v:IsA("Tool") then
+            v.Parent = workspace
         end
     end
+end)
+
+game.Workspace.ChildAdded:Connect(function(child)
+    wait(1)
+    child:Destroy()
 end)
